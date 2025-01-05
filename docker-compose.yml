@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  jio_savan_music_downloader:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: jio_savan_music_downloader
+    ports:
+      - "80:80"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+    command: >
+      jio_savan_music_downloader

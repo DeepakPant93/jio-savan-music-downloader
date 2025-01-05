@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python Debugger: jio_savan_music_downloader",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${workspaceFolder}/jio_savan_music_downloader/main.py",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "jinja": true
+        }
+    ]
+}
