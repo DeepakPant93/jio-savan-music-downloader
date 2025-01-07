@@ -11,21 +11,16 @@ packages = [
 ]
 
 [tool.poetry.scripts]
-jio_savan_music_downloader = "jio_savan_music_downloader.main:main"
+jio_savan_music_downloader = "jio_savan_music_downloader.__main__:main"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<4.0"
-fastapi = "~0.100.0"  # Latest compatible version
-uvicorn = "^0.23.0"  # For running FastAPI apps
-fastapi-health = "^0.4.0"  # Health check for FastAPI
-#pyyaml = "^6.0.2"
-#python-box = "^7.2.0"
-#ensure = "^1.0.4"
-#joblib = "^1.3.2"  # Parallel processing and caching
-#python-dotenv = "^1.0.0"  # Manage environment variables
-#PyPDF2 = "^3.0.0"  # For PDF manipulation
-#pydantic = "^2.0.0"  # Data validation and settings management
-
+python = ">=3.11,<3.13"
+crewai = {version = ">=0.86.0,<1.0.0", extras = ["tools"]}
+streamlit = "^1.41.1"
+selenium = "^4.27.1"
+# chromedriver_autoinstaller = "^0.6.4"
+# webdriver-manager = "*"
+bs4 = "*"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -43,7 +38,8 @@ twine = "^4.0.0"  # Publish packages
 bandit = "^1.8.0"  # Security check
 pylint = "^3.0.0"  # Powerful linter
 pydocstyle = "^6.3.0"  # Enforce PEP 257 docstring conventions
-isort = "^5.12.0"  # Sort imports
+# isort = "^5.12.0"  # Sort imports
+# ruff = "^0.8.6"  # Linting tool
 
 [tool.poetry.group.docs.dependencies]
 mkdocs = "^1.5.0"  # Documentation site generator
@@ -62,20 +58,6 @@ livereload = "^2.6.3"  # Live reload for MkDocs
 watchdog = "^3.0.0"  # File monitoring
 mkdocstrings = {extras = ["python"], version = "^0.27.0"}  # Auto-generate documentation from docstrings
 mkdocs-minify-plugin = "^0.8.0"  # Minify HTML
-
-[tool.poetry.group.test.dependencies]
-pytest-mock = "^3.11.0"  # Mocking in tests
-factory-boy = "^3.3.1"  # Test data generation
-pytest-asyncio = "^0.21.0"  # Async testing support
-pytest-xdist = "^3.3.1"  # Parallel test execution
-freezegun = "^1.2.0"  # Mock datetime
-pytest = "^7.2.0"  # Testing framework
-allure-pytest = "^2.13.0"  # Reporting for pytest
-pytest-sugar = "^0.9.7"  # Better test output
-pytest-cov = "^4.0.0"  # Test coverage reports
-httpx = "^0.24.0"
-pytest-runner = "^6.0.0"  # Running tests via `python setup.py test`
-
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
@@ -101,7 +83,10 @@ module = [
     "yaml.*",
     "ensure.*",
     "fastapi_health.*",
-    "jio_savan_music_downloader.main"
+    "crewai.*",
+    "crewai_tools.*",
+    "bs4.*",
+    "jio_savan_music_downloader.crew"
 ]
 ignore_missing_imports = true
 ignore_errors = true
@@ -178,11 +163,7 @@ source = ["jio_savan_music_downloader"]
 # concurrency = ["thread"]
 omit = [
     "**/__init__.py", # Exclude all init files
-    "jio_savan_music_downloader/main.py",  # Exclude main.py file
-    "jio_savan_music_downloader/constants/*",   # Exclude all files in a constants folder
-    "jio_savan_music_downloader/exception/*",   # Exclude all files in a exception folder
-    "jio_savan_music_downloader/logger/*",  # Exclude all files in a logger folder
-    "jio_savan_music_downloader/entity/*",  # Exclude all files in entity folder
+    "jio_savan_music_downloader/crew.py",  # Exclude crew.py file
     "jio_savan_music_downloader/config/*",  # Exclude all files in config folder
     "jio_savan_music_downloader/models/*",  # Exclude all files in model folder
 ]
@@ -200,13 +181,16 @@ glob = "pyproject.toml"
 search = 'version = "{current_version}"'
 replace = 'version = "{new_version}"'
 
-[[tool.bumpversion.files]]
-glob = "jio_savan_music_downloader/main.py"
-search = '__version__ = "{current_version}"'
-replace = '__version__ = "{new_version}"'
-
 [tool.deptry]
 exclude = ["research","artifacts", "notebooks", "tests", "docs", ".venv", "venv", "__pycache__", ".ruff_cache", ".pytest_cache", ".mypy_cache", ".coverage", ".git", "build", "dist", ".github", "site", "config"]
+ignore = ["DEP003"]
 
 [tool.pydocstyle]
 select = ["D101", "D102"]
+
+[tool.isort]
+profile = "black"
+known_third_party = ["requests", "bs4", "pydantic", "crewai_tools"]
+default_section = "THIRDPARTY"
+force_sort_within_sections = true
+line_length = 120

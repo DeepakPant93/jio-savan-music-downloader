@@ -5,7 +5,8 @@
             "name": "Python Debugger: jio_savan_music_downloader",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/jio_savan_music_downloader/main.py",
+            "program": "${workspaceFolder}/jio_savan_music_downloader/app.py",
+            "args": ["run"],
             "console": "integratedTerminal",
             "justMyCode": true,
             "jinja": true

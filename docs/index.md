@@ -44,6 +44,7 @@ This repository contains a sample Data Science application built with FastAPI, d
     git clone https://github.com/DeepakPant93/jio-savan-music-downloader.
     cd jio-savan-music-downloader
     ```
+
 1. Initialize the repository if it's your first time:
 
     ```bash
@@ -51,13 +52,13 @@ This repository contains a sample Data Science application built with FastAPI, d
     make init-repo
     ```
 
-2. Install dependencies using Poetry:
+1. Install dependencies using Poetry:
 
     ```bash
     make bake-env
     ```
 
-3. Run the FastAPI server:
+1. Run the FastAPI server:
 
     ```bash
     make run

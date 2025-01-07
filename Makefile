@@ -121,6 +121,10 @@ lint: ## Run code quality tools
 	@echo "🚀 Linting code with pre-commit"
 	@poetry run pre-commit run -a
 	@echo "🚀 Static type checking with mypy"
+	# @echo "🚀 Sorting imports with isort"
+	# @poetry run isort jio_savan_music_downloader/
+	# @echo "🚀 Linting code with Ruff"
+	# @poetry run ruff format jio_savan_music_downloader/
 	@poetry run mypy
 	@echo "🚀 Checking for obsolete dependencies with deptry"
 	@poetry run deptry .
@@ -175,7 +179,7 @@ update: ## Update project dependencies
 .PHONY: run
 run: ## Run the project's main application
 	@echo "🚀 Running the project"
-	@poetry run python $(PROJECT_SLUG)/main.py
+	@poetry run streamlit run $(PROJECT_SLUG)/app.py
 
 .PHONY: docs-test
 docs-test: ## Test if documentation can be built without warnings or errors

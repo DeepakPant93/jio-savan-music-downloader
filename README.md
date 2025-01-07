@@ -1,9 +1,19 @@
+---
+title: Free Music Downloader
+emoji: 🎵
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+short_description: AI service for searching and downloading the free music.
+---
+
 # jio-savan-music-downloader
 
 This app will download Jio-Savan music.
 
-- **Github repository**: <https://github.com/DeepakPant93/jio-savan-music-downloader/>
-- **Documentation** <https://DeepakPant93.github.io/jio-savan-music-downloader/>
+-   **Github repository**: <https://github.com/DeepakPant93/jio-savan-music-downloader/>
+-   **Documentation** <https://DeepakPant93.github.io/jio-savan-music-downloader/>
 
 ## Getting started with your project
 

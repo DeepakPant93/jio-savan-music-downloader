@@ -47,7 +47,7 @@
                 "python.linting.pylintEnabled": true
             }
         }
-    }//,
+    } //,
     // "hostRequirements": {
     //     "cpus": 2,
     //     "memory": "4gb",
